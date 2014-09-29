@@ -1,6 +1,7 @@
 package com.rocketmq.community.jms.spring;
 
 import com.alibaba.rocketmq.broker.BrokerStartup;
+import com.alibaba.rocketmq.common.MixAll;
 import com.alibaba.rocketmq.namesrv.NamesrvStartup;
 import com.rocketmq.community.jms.helper.JmsConsumerAsync;
 import com.rocketmq.community.jms.helper.JmsProducer;
@@ -10,6 +11,7 @@ import com.rocketmq.community.jms.message.BytesMessageImpl;
 import com.rocketmq.community.jms.message.MapMessageImpl;
 import com.rocketmq.community.jms.message.ObjectMessageImpl;
 import com.rocketmq.community.jms.message.StreamMessageImpl;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +21,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TextMessage;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -34,16 +37,17 @@ public class TestQueueListener {
 
     @Before
     public void setup() {
+        System.setProperty(MixAll.NAMESRV_ADDR_PROPERTY, "192.168.1.247:9876");
         // Name Server, Broker会在case执行完被关闭（因为JVM的关闭，它们的shutdown hook会被调用)
-        if (!nameSrvStarted) {
-            NamesrvStartup.main(null);
-            nameSrvStarted = true;
-        }
-
-        if (!brokerStarted) {
-            BrokerStartup.main(null);
-            brokerStarted = true;
-        }
+//        if (!nameSrvStarted) {
+//            NamesrvStartup.main(null);
+//            nameSrvStarted = true;
+//        }
+//
+//        if (!brokerStarted) {
+//            BrokerStartup.main(null);
+//            brokerStarted = true;
+//        }
     }
 
 
